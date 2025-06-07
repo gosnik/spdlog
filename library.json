@@ -1,0 +1,26 @@
+{
+  "name": "spdlog",
+  "version": "1.0.0",
+  "description": "spdlog (embedded)",
+  "keywords": "logging",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/gosnik/spdlog.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Adam Phoenix",
+      "email": "gosnik@gmail.com",
+      "url": "https://github.com/gosnik"
+    }
+  ],
+  "homepage": "https://github.com/gosnik",
+  "frameworks": "*",
+  "platforms": "*",
+  "include": [
+    "include",
+    "README.*"
+  ]
+}
