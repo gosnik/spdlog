@@ -31,7 +31,6 @@ public:
     registry &operator=(const registry &) = delete;
 
     void register_logger(std::shared_ptr<logger> new_logger);
-    void register_or_replace(std::shared_ptr<logger> new_logger);
     void initialize_logger(std::shared_ptr<logger> new_logger);
     std::shared_ptr<logger> get(const std::string &logger_name);
     std::shared_ptr<logger> default_logger();
@@ -106,7 +105,6 @@ private:
 
     void throw_if_exists_(const std::string &logger_name);
     void register_logger_(std::shared_ptr<logger> new_logger);
-    void register_or_replace_(std::shared_ptr<logger> new_logger);
     bool set_level_from_cfg_(logger *logger);
     std::mutex logger_map_mutex_, flusher_mutex_;
     std::recursive_mutex tp_mutex_;

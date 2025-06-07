@@ -364,7 +364,12 @@ SPDLOG_CONSTEXPR_FUNC spdlog::wstring_view_t to_string_view(spdlog::wstring_view
 }
 #endif
 
-#if defined(SPDLOG_USE_STD_FORMAT) && __cpp_lib_format >= 202207L
+#ifndef SPDLOG_USE_STD_FORMAT
+template <typename T, typename... Args>
+inline fmt::basic_string_view<T> to_string_view(fmt::basic_format_string<T, Args...> fmt) {
+    return fmt;
+}
+#elif __cpp_lib_format >= 202207L
 template <typename T, typename... Args>
 SPDLOG_CONSTEXPR_FUNC std::basic_string_view<T> to_string_view(
     std::basic_format_string<T, Args...> fmt) SPDLOG_NOEXCEPT {
@@ -377,8 +382,8 @@ SPDLOG_CONSTEXPR_FUNC std::basic_string_view<T> to_string_view(
 using std::enable_if_t;
 using std::make_unique;
 #else
-template <bool B, class T = void>
-using enable_if_t = typename std::enable_if<B, T>::type;
+template <bool BType, class T = void>
+using enable_if_t = typename std::enable_if<BType, T>::type;
 
 template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args &&...args) {
